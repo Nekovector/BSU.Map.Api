@@ -14,17 +14,19 @@ namespace BSU.Map.WebApi.Controllers
     {
         private readonly IScientistService _scentistService;
 
+        
         public ScientistController (IScientistService scientistService)
         {
             _scentistService = scientistService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetScientist([FromQuery] int scientistId)
+        [Route("all")]
+        public async Task<IActionResult> GetAllScientists()
         {
-            var scientist = await _scentistService.GetScientistInfo(scientistId);
+            var scientists = await _scentistService.GetAllScientists();
 
-            return Ok(scientist);
+            return Ok(scientists);
         }
     }
 }

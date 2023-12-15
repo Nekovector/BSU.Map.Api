@@ -6,6 +6,6 @@ namespace BSU.Map.BLL.Interfaces
 {
     public interface IScientistService
     {
-        Task<IEnumerable<ScientistDto>> GetScientistInfo(int scientistId);
+        Task<IEnumerable<ScientistDto>> GetAllScientists();
     }
 }

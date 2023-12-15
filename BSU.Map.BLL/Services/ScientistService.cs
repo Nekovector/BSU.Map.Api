@@ -18,16 +18,16 @@ namespace BSU.Map.BLL.Services
         {
         }
 
-        public async Task<IEnumerable<ScientistDto>> GetScientistInfo(int scientistId)
+        public async Task<IEnumerable<ScientistDto>> GetAllScientists()
         {
-            IEnumerable<Scientist> scientist = await UnitOfWork.Scientists
-                .GetAll(sc => sc.Id == scientistId)
-                .Include(sc => sc.MemoryPlaces)
-                .ThenInclude(mp => mp.Coordinates)
+            IEnumerable<Scientist> scientists = await UnitOfWork.Scientists
+                .GetAll()
                 .Include(sc => sc.AddMaterials)
+                .Include(sc => sc.MemoryPlaces)
+                .ThenInclude(sc => sc.Coordinates)
                 .ToListAsync();
-            
-            IEnumerable<ScientistDto> result = Mapper.Map<IEnumerable<ScientistDto>>(scientist);
+
+            IEnumerable<ScientistDto> result = Mapper.Map<IEnumerable<ScientistDto>>(scientists);
 
             return result;
         }
