@@ -25,6 +25,7 @@ namespace BSU.Map.BLL.Services
                 .Include(sc => sc.AddMaterials)
                 .Include(sc => sc.MemoryPlaces)
                 .ThenInclude(sc => sc.Coordinates)
+                .AsSplitQuery()
                 .ToListAsync();
 
             IEnumerable<ScientistDto> result = Mapper.Map<IEnumerable<ScientistDto>>(scientists);

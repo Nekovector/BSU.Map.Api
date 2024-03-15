@@ -63,8 +63,6 @@ namespace BSU.Map.BLL.Mappers
         private void StructuralObjectProfiles()
         {
             CreateMap<DAL.Models.StructuralObject, StructuralObjectDto>()
-                .ForMember(dest => dest.BuildingId, opt => opt.MapFrom(src => src.BuildingId))
-                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category))
                 .ForMember(dest => dest.Icon, opt => opt.MapFrom(src => src.StructuralObjectsIcon));
         }
         private void MemoryPlaceProfiles()
