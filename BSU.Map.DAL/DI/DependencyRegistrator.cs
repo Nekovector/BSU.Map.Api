@@ -24,7 +24,7 @@ namespace BSU.Map.DAL.DI
 
         private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<bsu_mapContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString(connectionStringName)));
         }
 

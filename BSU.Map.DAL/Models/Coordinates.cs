@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BSU.Map.DAL.Models
 {
-    public class Coordinate
+    public class Coordinates
     {
         public int Id { get; set; }
         public double Latitude { get; set; }

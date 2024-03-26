@@ -17,7 +17,7 @@ namespace BSU.Map.DAL
 
         private IRepository<MemoryPhoto> _memoryPhotosRepository;
 
-        private readonly ApplicationDbContext _context;
+        private readonly bsu_mapContext _context;
 
 
         public IRepository<Building> Buildings => GetRepository(ref _buildingRepository);
@@ -30,7 +30,7 @@ namespace BSU.Map.DAL
 
         public IRepository<MemoryPhoto> MemoryPhotos => GetRepository(ref _memoryPhotosRepository);
 
-        public UnitOfWork(ApplicationDbContext context)
+        public UnitOfWork(bsu_mapContext context)
         {
             _context = context;
         }

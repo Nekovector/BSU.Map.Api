@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BSU.Map.BLL.Dtos
 {
@@ -16,11 +13,15 @@ namespace BSU.Map.BLL.Dtos
 
         public string Patronymic { get; set; }
 
+        public string Biography { get; set; }
+
         public DateTime BirthDate { get; set; }
 
-        public DateTime DeathDate { get; set; }
+        public DateTime? DeathDate { get; set; }
 
-        public ICollection<AddMaterialDto> AddMaterials { get; set; }
+        public ICollection<ScientistPhotoDto> ScientistPhotos { get; set; }
+
+        public ICollection<ScientistDocDto> ScientistDocs { get; set; }
 
         public ICollection<MemoryPlaceDto> MemoryPlaces { get; set; }
     }

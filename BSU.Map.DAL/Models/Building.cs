@@ -7,6 +7,12 @@ namespace BSU.Map.DAL.Models
 {
     public class Building
     {
+        public Building()
+        {
+            Photos = new HashSet<Photo>();
+            StructuralObjects = new HashSet<StructuralObject>();
+        }
+
         public int Id { get; set; }
         public string InventoryUsrreNumber { get; set; }
         public string Name { get; set; }

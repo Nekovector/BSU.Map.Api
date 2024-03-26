@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
 using BSU.Map.BLL.Dtos;
+using BSU.Map.DAL.Models;
 
 namespace BSU.Map.BLL.Mappers
 {
@@ -20,69 +21,79 @@ namespace BSU.Map.BLL.Mappers
             StructuralObjectProfiles();
             MemoryPlaceProfiles();
             MemoryPhotoProfiles();
+            MemoryDocProfiles();
             ScientistProfiles();
-            AddMaterialProfiles();
+            ScientistPhotoProfiles();
+            ScientistDocProfiles();
         }
-
         private void CoordinatesProfiles()
         {
-            CreateMap<DAL.Models.Coordinate, CoordinatesDto>();
+            CreateMap<Coordinates, CoordinatesDto>();
         }
 
         private void BuildingAddressProfiles()
         {
-            CreateMap<DAL.Models.BuildingAddress, BuildingAddressDto>();
+            CreateMap<BuildingAddress, BuildingAddressDto>();
         }
 
         private void BuildingTypeProfiles()
         {
-            CreateMap<DAL.Models.BuildingType, BuildingTypeDto>();
+            CreateMap<BuildingType, BuildingTypeDto>();
         }
 
         private void PhotoProfiles()
         {
-            CreateMap<DAL.Models.Photo, PhotoDto>();
+            CreateMap<Photo, PhotoDto>();
         }
 
         private void BuildingProfiles()
         {
-            CreateMap<DAL.Models.Building, HistoricalBuildingDto>();
-            CreateMap<DAL.Models.Building, ModernBuildingDto>();
+            CreateMap<Building, HistoricalBuildingDto>();
+            CreateMap<Building, ModernBuildingDto>();
         }
 
         private void CategoriesProfiles()
         {
-            CreateMap<DAL.Models.Category, StructuralObjectCategoryDto>();
+            CreateMap<Category, StructuralObjectCategoryDto>();
         }
 
         private void StructuralObjectIconProfiles()
         {
-            CreateMap<DAL.Models.StructuralObjectsIcon, StructuralObjectIconDto>();
+            CreateMap<StructuralObjectsIcon, StructuralObjectIconDto>();
         }
 
         private void StructuralObjectProfiles()
         {
-            CreateMap<DAL.Models.StructuralObject, StructuralObjectDto>()
+            CreateMap<StructuralObject, StructuralObjectDto>()
                 .ForMember(dest => dest.Icon, opt => opt.MapFrom(src => src.StructuralObjectsIcon));
         }
         private void MemoryPlaceProfiles()
         {
-            CreateMap<DAL.Models.MemoryPlace, MemoryPlaceDto>();
+            CreateMap<MemoryPlace, MemoryPlaceDto>();
         }
 
         private void MemoryPhotoProfiles()
         {
-            CreateMap<DAL.Models.MemoryPhoto, MemoryPhotoDto>();
+            CreateMap<MemoryPhoto, MemoryPhotoDto>();
+        }
+
+        private void MemoryDocProfiles()
+        {
+            CreateMap<MemoryDoc, MemoryDocDto>();
         }
 
         private void ScientistProfiles()
         {
-            CreateMap<DAL.Models.Scientist, ScientistDto>();
+            CreateMap<Scientist, ScientistDto>();
         }
 
-        private void AddMaterialProfiles()
+        private void ScientistPhotoProfiles()
         {
-            CreateMap<DAL.Models.AddMaterial, AddMaterialDto>();
+            CreateMap<ScientistPhoto, ScientistPhotoDto>();
+        }
+        private void ScientistDocProfiles()
+        {
+            CreateMap<ScientistDoc, ScientistDocDto>();
         }
     }
 }

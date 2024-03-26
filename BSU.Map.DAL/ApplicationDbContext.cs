@@ -1,31 +1,32 @@
 ﻿using BSU.Map.DAL.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
 namespace BSU.Map.DAL
 {
-    public class ApplicationDbContext : DbContext
+    public class bsu_mapContext : DbContext
     {
-        public ApplicationDbContext()
+        public bsu_mapContext()
         {
         }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public bsu_mapContext(DbContextOptions<bsu_mapContext> options) : base(options)
         {
         }
 
-        public virtual DbSet<AddMaterial> AddMaterials { get; set; }
         public virtual DbSet<Building> Buildings { get; set; }
         public virtual DbSet<BuildingAddress> BuildingAddresses { get; set; }
         public virtual DbSet<BuildingType> BuildingTypes { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Coordinate> Coordinates { get; set; }
+        public virtual DbSet<Coordinates> Coordinates { get; set; }
+        public virtual DbSet<MemoryDoc> MemoryDocs { get; set; }
         public virtual DbSet<MemoryPhoto> MemoryPhotos { get; set; }
         public virtual DbSet<MemoryPlace> MemoryPlaces { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Scientist> Scientists { get; set; }
+        public virtual DbSet<ScientistDoc> ScientistDocs { get; set; }
+        public virtual DbSet<ScientistPhoto> ScientistPhotos { get; set; }
         public virtual DbSet<StructuralObject> StructuralObjects { get; set; }
         public virtual DbSet<StructuralObjectsIcon> StructuralObjectsIcons { get; set; }
 
@@ -35,29 +36,7 @@ namespace BSU.Map.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "en_US.utf8");
-
-            modelBuilder.Entity<AddMaterial>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
-
-                entity.Property(e => e.FilePath)
-                    .HasMaxLength(100)
-                    .HasColumnName("file_path");
-
-                entity.Property(e => e.ScientistId).HasColumnName("scientist_id");
-
-                entity.Property(e => e.Title)
-                    .HasMaxLength(100)
-                    .HasColumnName("title");
-
-                entity.HasOne(d => d.Scientist)
-                    .WithMany(p => p.AddMaterials)
-                    .HasForeignKey(d => d.ScientistId)
-                    .HasConstraintName("AddMaterials_scientist_id_fkey");
-            });
+            modelBuilder.HasAnnotation("Relational:Collation", "Russian_Russia.1251");
 
             modelBuilder.Entity<Building>(entity =>
             {
@@ -126,6 +105,7 @@ namespace BSU.Map.DAL
                     .HasColumnName("marker_path");
 
                 entity.Property(e => e.Type)
+                    .IsRequired()
                     .HasMaxLength(70)
                     .HasColumnName("type");
             });
@@ -142,7 +122,7 @@ namespace BSU.Map.DAL
                     .HasColumnName("name");
             });
 
-            modelBuilder.Entity<Coordinate>(entity =>
+            modelBuilder.Entity<Coordinates>(entity =>
             {
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()
@@ -151,6 +131,28 @@ namespace BSU.Map.DAL
                 entity.Property(e => e.Latitude).HasColumnName("latitude");
 
                 entity.Property(e => e.Longitude).HasColumnName("longitude");
+            });
+
+            modelBuilder.Entity<MemoryDoc>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
+                entity.Property(e => e.FilePath)
+                    .HasMaxLength(100)
+                    .HasColumnName("file_path");
+
+                entity.Property(e => e.MemoryPlaceId).HasColumnName("memory_place_id");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(100)
+                    .HasColumnName("title");
+
+                entity.HasOne(d => d.MemoryPlace)
+                    .WithMany(p => p.MemoryDocs)
+                    .HasForeignKey(d => d.MemoryPlaceId)
+                    .HasConstraintName("MemoryDocs_memory_place_id_fkey");
             });
 
             modelBuilder.Entity<MemoryPhoto>(entity =>
@@ -168,6 +170,8 @@ namespace BSU.Map.DAL
                     .HasColumnName("image_path");
 
                 entity.Property(e => e.MemoryPlaceId).HasColumnName("memory_place_id");
+
+                entity.Property(e => e.OrdinalNumber).HasColumnName("ordinal_number");
 
                 entity.HasOne(d => d.MemoryPlace)
                     .WithMany(p => p.MemoryPhotos)
@@ -192,6 +196,8 @@ namespace BSU.Map.DAL
                     .IsRequired()
                     .HasMaxLength(200)
                     .HasColumnName("name");
+
+                entity.Property(e => e.OrdinalNumber).HasColumnName("ordinal_number");
 
                 entity.Property(e => e.ScientistId).HasColumnName("scientist_id");
 
@@ -234,10 +240,12 @@ namespace BSU.Map.DAL
                     .ValueGeneratedNever()
                     .HasColumnName("id");
 
+                entity.Property(e => e.Biography).HasColumnName("biography");
+
                 entity.Property(e => e.BirthDate)
                     .HasColumnType("date")
                     .HasColumnName("birth_date");
-               
+
                 entity.Property(e => e.DeathDate)
                     .HasColumnType("date")
                     .HasColumnName("death_date");
@@ -255,6 +263,50 @@ namespace BSU.Map.DAL
                 entity.Property(e => e.Patronymic)
                     .HasMaxLength(50)
                     .HasColumnName("patronymic");
+            });
+
+            modelBuilder.Entity<ScientistDoc>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
+                entity.Property(e => e.FilePath)
+                    .HasMaxLength(100)
+                    .HasColumnName("file_path");
+
+                entity.Property(e => e.ScientistId).HasColumnName("scientist_id");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(100)
+                    .HasColumnName("title");
+
+                entity.HasOne(d => d.Scientist)
+                    .WithMany(p => p.ScientistDocs)
+                    .HasForeignKey(d => d.ScientistId)
+                    .HasConstraintName("ScientistDocs_scientist_id_fkey");
+            });
+
+            modelBuilder.Entity<ScientistPhoto>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
+                entity.Property(e => e.ImagePath)
+                    .HasMaxLength(100)
+                    .HasColumnName("image_path");
+
+                entity.Property(e => e.ScientistId).HasColumnName("scientist_id");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(100)
+                    .HasColumnName("title");
+
+                entity.HasOne(d => d.Scientist)
+                    .WithMany(p => p.ScientistPhotos)
+                    .HasForeignKey(d => d.ScientistId)
+                    .HasConstraintName("ScientistPhotos_scientist_id_fkey");
             });
 
             modelBuilder.Entity<StructuralObject>(entity =>

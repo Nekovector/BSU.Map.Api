@@ -10,10 +10,10 @@ namespace BSU.Map.DAL.Repositories
 {
     internal class Repository<T> : IRepository<T> where T : class
     {
-        protected ApplicationDbContext DbContext { get; set; }
+        protected bsu_mapContext DbContext { get; set; }
         protected DbSet<T> DbSet { get; set; }
 
-        public Repository(ApplicationDbContext context)
+        public Repository(bsu_mapContext context)
         {
             DbContext = context;
             DbSet = context.Set<T>();

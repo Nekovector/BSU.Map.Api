@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BSU.Map.DAL.Models
 {
-    public class AddMaterial
+    public class ScientistDoc
     {
         public int Id { get; set; }
         public string Title { get; set; }

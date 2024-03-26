@@ -52,13 +52,13 @@ INSERT INTO "Coordinates" (id,latitude,longitude) VALUES (2029, 53.8967996309196
 
 ------------------------------ SCIENTISTS -----------------------------------------
 
-INSERT INTO "Scientists" (id,first_name,last_name,patronymic,biography,birth_date,death_date) VALUES (1, 'Владимир', 'Перцев', 'Николаевич', 'bio_undefined', 1877-06-15', '1960-06-03');
+INSERT INTO "Scientists" (id,first_name,last_name,patronymic,biography,birth_date,death_date) VALUES (1, 'Владимир', 'Перцев', 'Николаевич', 'bio_undefined', '1877-06-15', '1960-06-03');
 
 
 
 ------------------------------ SCIENTIST PHOTOS -----------------------------------------
 
-INSERT INTO "MemoryPhotos" (id,title,image_path,scientist_id) VALUES (1, 'Перцев В.Н', 'Основная.jpg', 1);
+INSERT INTO "ScientistPhotos" (id,title,image_path,scientist_id) VALUES (1, 'Перцев В.Н', 'Основная.jpg', 1);
 
 
 ------------------------------ MEMORY PLACES -----------------------------------------
@@ -97,10 +97,10 @@ INSERT INTO "MemoryPlaces" (id,ordinal_number,name,description,coordinates_id,sc
 
 ------------------------------ MEMORY PHOTOS -----------------------------------------
 
-INSERT INTO "MemoryPhotos" (id,description,image_path,memory_place_id) VALUES (1, 'Курское реальное училище', '1.1.jpg', 1);
-INSERT INTO "MemoryPhotos" (id,description,image_path,memory_place_id) VALUES (2, 'Курское_реальное_училище', '1.2.jpg', 1);
-INSERT INTO "MemoryPhotos" (id,description,image_path,memory_place_id) VALUES (3, 'Главное здание. СПб технологического института 1840-е', '2.1.jpg', 2);
-INSERT INTO "MemoryPhotos" (id,description,image_path,memory_place_id) VALUES (4, 'Харьковская 2-я мужская гимназия', '2.2.jpeg', 2);
-INSERT INTO "MemoryPhotos" (id,description,image_path,memory_place_id) VALUES (5, 'Императорский московский университет', '3.1.jpg', 3);
-INSERT INTO "MemoryPhotos" (id,description,image_path,memory_place_id) VALUES (6, 'ИМУ', '3.2.jpg', 3);
-INSERT INTO "MemoryPhotos" (id,description,image_path,memory_place_id) VALUES (7, 'Фото ИМУ', '3.3.jpg', 3);
+INSERT INTO "MemoryPhotos" (id,ordinal_number,description,image_path,memory_place_id) VALUES (1, 1, 'Курское реальное училище', '1.1.jpg', 1);
+INSERT INTO "MemoryPhotos" (id,ordinal_number,description,image_path,memory_place_id) VALUES (2, 2, 'Курское_реальное_училище', '1.2.jpg', 1);
+INSERT INTO "MemoryPhotos" (id,ordinal_number,description,image_path,memory_place_id) VALUES (3, 1, 'Главное здание. СПб технологического института 1840-е', '2.1.jpg', 2);
+INSERT INTO "MemoryPhotos" (id,ordinal_number,description,image_path,memory_place_id) VALUES (4, 2, 'Харьковская 2-я мужская гимназия', '2.2.jpeg', 2);
+INSERT INTO "MemoryPhotos" (id,ordinal_number,description,image_path,memory_place_id) VALUES (5, 1, 'Императорский московский университет', '3.1.jpg', 3);
+INSERT INTO "MemoryPhotos" (id,ordinal_number,description,image_path,memory_place_id) VALUES (6, 2, 'ИМУ', '3.2.jpg', 3);
+INSERT INTO "MemoryPhotos" (id,ordinal_number,description,image_path,memory_place_id) VALUES (7, 3, 'Фото ИМУ', '3.3.jpg', 3);

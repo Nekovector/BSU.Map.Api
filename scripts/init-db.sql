@@ -94,7 +94,7 @@ CREATE TABLE "MemoryPhotos" (
 	ordinal_number INT NOT NULL,
     	description VARCHAR(1200),
     	image_path VARCHAR(100),
-	memory_place_id INT NOT NULL,
+	memory_place_id INT NOT NULL
 );
 
 CREATE TABLE "MemoryDocs" (

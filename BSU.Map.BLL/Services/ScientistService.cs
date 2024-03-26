@@ -22,7 +22,8 @@ namespace BSU.Map.BLL.Services
         {
             IEnumerable<Scientist> scientists = await UnitOfWork.Scientists
                 .GetAll()
-                .Include(sc => sc.AddMaterials)
+                .Include(sc => sc.ScientistPhotos)
+                .Include(sc => sc.ScientistDocs)
                 .Include(sc => sc.MemoryPlaces)
                 .ThenInclude(sc => sc.Coordinates)
                 .AsSplitQuery()
