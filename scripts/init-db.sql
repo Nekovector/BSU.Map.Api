@@ -13,7 +13,7 @@ CREATE TABLE "BuildingAddresses" (
 
 CREATE TABLE "BuildingTypes" (
 	id INT PRIMARY KEY,
-	type VARCHAR(70) NOT NULL,
+	type VARCHAR(70),
   	marker_path VARCHAR(100),
   	CONSTRAINT BuildingTypes_marker_path_ukey UNIQUE (marker_path)
 );

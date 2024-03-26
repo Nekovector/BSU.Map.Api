@@ -105,7 +105,6 @@ namespace BSU.Map.DAL
                     .HasColumnName("marker_path");
 
                 entity.Property(e => e.Type)
-                    .IsRequired()
                     .HasMaxLength(70)
                     .HasColumnName("type");
             });
