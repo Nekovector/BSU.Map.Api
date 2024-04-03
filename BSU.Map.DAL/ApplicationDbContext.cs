@@ -236,7 +236,7 @@ namespace BSU.Map.DAL
             modelBuilder.Entity<Scientist>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("id");
 
                 entity.Property(e => e.Biography).HasColumnName("biography");

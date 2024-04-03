@@ -9,6 +9,7 @@ TRUNCATE TABLE "ScientistPhotos" CASCADE;
 TRUNCATE TABLE "ScientistDocs" CASCADE;
 TRUNCATE TABLE "Scientists" CASCADE;
 TRUNCATE TABLE "Coordinates" CASCADE;
+SELECT setval('public."Scientists_id_seq"', 1);
 
 COMMIT;
 

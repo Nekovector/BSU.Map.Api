@@ -1,5 +1,6 @@
-﻿using BSU.Map.BLL.Interfaces;
-using BSU.Map.BLL.Services;
+﻿using BSU.Map.BLL.Dtos;
+using BSU.Map.BLL.Interfaces;
+
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
@@ -12,21 +13,44 @@ namespace BSU.Map.WebApi.Controllers
     [SwaggerTag("Working with scientists")]
     public class ScientistController : ControllerBase
     {
-        private readonly IScientistService _scentistService;
+        private readonly IScientistService _scientistService;
 
         
         public ScientistController (IScientistService scientistService)
         {
-            _scentistService = scientistService;
+            _scientistService = scientistService;
         }
 
         [HttpGet]
         [Route("all")]
         public async Task<IActionResult> GetAllScientists()
         {
-            var scientists = await _scentistService.GetAllScientists();
-
+            var scientists = await _scientistService.GetAllScientists();
             return Ok(scientists);
+        }
+
+        [HttpPost]
+        [Route("create")]
+        public async Task<IActionResult> CreateScientist([FromForm] ScientistModelDto scientist)
+        {
+            bool result = await _scientistService.CreateScientist(scientist);
+            return Ok(result);
+        }
+
+        [HttpPut]
+        [Route("update/{id}")]
+        public async Task<IActionResult> UpdateScientist([FromRoute] int scientistId, [FromForm] ScientistModelDto scientist)
+        {
+            bool result = await _scientistService.UpdateScientist(scientistId, scientist);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public async Task<IActionResult> UpdateScientist([FromRoute] int scientistId)
+        {
+            bool result = await _scientistService.DeleteScientist(scientistId);
+            return Ok(result);
         }
     }
 }

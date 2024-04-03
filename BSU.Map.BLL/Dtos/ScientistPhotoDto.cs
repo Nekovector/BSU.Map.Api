@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-#nullable disable
-
-namespace BSU.Map.BLL.Dtos
+﻿namespace BSU.Map.BLL.Dtos
 {
     public class ScientistPhotoDto
     {

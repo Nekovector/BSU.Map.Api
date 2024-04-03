@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AutoMapper;
+﻿using AutoMapper;
 using BSU.Map.BLL.Dtos;
 using BSU.Map.DAL.Models;
 
@@ -85,6 +82,11 @@ namespace BSU.Map.BLL.Mappers
         private void ScientistProfiles()
         {
             CreateMap<Scientist, ScientistDto>();
+            CreateMap<ScientistModelDto, Scientist>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.MemoryPlaces, opt => opt.Ignore())
+                .ForMember(dest => dest.ScientistDocs, opt => opt.Ignore())
+                .ForMember(dest => dest.ScientistPhotos, opt => opt.Ignore());
         }
 
         private void ScientistPhotoProfiles()
