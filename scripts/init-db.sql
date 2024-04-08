@@ -55,7 +55,7 @@ CREATE TABLE "StructuralObjectsIcons" (
 );
 
 CREATE TABLE "Scientists" (
-    	id INT PRIMARY KEY,
+    	id SERIAL PRIMARY KEY,
     	first_name VARCHAR(50) NOT NULL,
     	last_name VARCHAR(50) NOT NULL,
 	patronymic VARCHAR(50),
