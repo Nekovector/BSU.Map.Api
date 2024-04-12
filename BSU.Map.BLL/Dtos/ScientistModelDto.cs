@@ -14,6 +14,6 @@ namespace BSU.Map.BLL.Dtos
 
         public DateTime BirthDate { get; set; }
 
-        public DateTime DeathDate { get; set; }
+        public DateTime? DeathDate { get; set; }
     }
 }

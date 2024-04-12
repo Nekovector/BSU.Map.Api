@@ -62,7 +62,7 @@ CREATE TABLE "Scientists" (
 	biography TEXT,
 	birth_date DATE NOT NULL,
 	death_date DATE,
-	CONSTRAINT dates_comparison CHECK (birth_date < death_date)	
+	CONSTRAINT dates_comparison CHECK (death_date IS NULL OR birth_date < death_date)	
 );
 
 CREATE TABLE "ScientistPhotos" (

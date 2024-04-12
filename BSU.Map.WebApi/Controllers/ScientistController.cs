@@ -31,7 +31,7 @@ namespace BSU.Map.WebApi.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> CreateScientist([FromForm] ScientistModelDto scientist)
+        public async Task<IActionResult> CreateScientist([FromBody] ScientistModelDto scientist)
         {
             bool result = await _scientistService.CreateScientist(scientist);
             return Ok(result);
@@ -39,7 +39,7 @@ namespace BSU.Map.WebApi.Controllers
 
         [HttpPut]
         [Route("update/{id}")]
-        public async Task<IActionResult> UpdateScientist([FromRoute] int scientistId, [FromForm] ScientistModelDto scientist)
+        public async Task<IActionResult> UpdateScientist([FromRoute] int scientistId, [FromBody] ScientistModelDto scientist)
         {
             bool result = await _scientistService.UpdateScientist(scientistId, scientist);
             return Ok(result);
