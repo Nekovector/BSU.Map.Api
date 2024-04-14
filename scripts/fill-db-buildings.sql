@@ -2,14 +2,11 @@
 
 BEGIN;
 
-TRUNCATE TABLE "StructuralObjectsIcons" CASCADE;
-TRUNCATE TABLE "StructuralObjects" CASCADE;
-TRUNCATE TABLE "Photos" CASCADE;
-TRUNCATE TABLE "Buildings" CASCADE;
+DELETE FROM "Coordinates" 
+WHERE id IN (SELECT coordinates_id FROM "BuildingAddresses");
 TRUNCATE TABLE "BuildingAddresses" CASCADE;
 TRUNCATE TABLE "BuildingTypes" CASCADE;
 TRUNCATE TABLE "Categories" CASCADE;
-TRUNCATE TABLE "Coordinates" CASCADE;
 
 COMMIT;
 

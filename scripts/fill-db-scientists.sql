@@ -2,14 +2,9 @@
 
 BEGIN;
 
-TRUNCATE TABLE "MemoryPhotos" CASCADE;
-TRUNCATE TABLE "MemoryDocs" CASCADE;
-TRUNCATE TABLE "MemoryPlaces" CASCADE;
-TRUNCATE TABLE "ScientistPhotos" CASCADE;
-TRUNCATE TABLE "ScientistDocs" CASCADE;
-TRUNCATE TABLE "Scientists" CASCADE;
-TRUNCATE TABLE "Coordinates" CASCADE;
-SELECT setval('public."Scientists_id_seq"', 1);
+DELETE FROM "Coordinates" 
+WHERE id IN (SELECT coordinates_id FROM "MemoryPlaces");
+TRUNCATE "Scientists" RESTART IDENTITY CASCADE;
 
 COMMIT;
 
