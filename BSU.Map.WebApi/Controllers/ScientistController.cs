@@ -1,4 +1,4 @@
-﻿using BSU.Map.BLL.Dtos;
+﻿using BSU.Map.BLL.Dtos.ScientistDtos;
 using BSU.Map.BLL.Interfaces;
 
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +26,22 @@ namespace BSU.Map.WebApi.Controllers
         public async Task<IActionResult> GetAllScientists()
         {
             var scientists = await _scientistService.GetAllScientists();
+            return Ok(scientists);
+        }
+
+        [HttpGet]
+        [Route("names")]
+        public async Task<IActionResult> GetScientistsNames()
+        {
+            var scientists = await _scientistService.GetScientistsNames();
+            return Ok(scientists);
+        }
+
+        [HttpGet]
+        [Route("id")]
+        public  IActionResult GetScientistById(int id)
+        {
+            var scientists = _scientistService.GetScientistById(id);
             return Ok(scientists);
         }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BSU.Map.BLL.Dtos
+namespace BSU.Map.BLL.Dtos.ScientistDtos
 {
     public class ScientistDto
     {

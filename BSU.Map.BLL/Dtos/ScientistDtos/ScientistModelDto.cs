@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BSU.Map.BLL.Dtos
+namespace BSU.Map.BLL.Dtos.ScientistDtos
 {
     public class ScientistModelDto
     {

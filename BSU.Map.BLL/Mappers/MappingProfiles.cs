@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BSU.Map.BLL.Dtos;
+using BSU.Map.BLL.Dtos.ScientistDtos;
 using BSU.Map.DAL.Models;
 
 namespace BSU.Map.BLL.Mappers
@@ -82,6 +83,7 @@ namespace BSU.Map.BLL.Mappers
         private void ScientistProfiles()
         {
             CreateMap<Scientist, ScientistDto>();
+            CreateMap<Scientist, ScientistLightDto>();
             CreateMap<ScientistModelDto, Scientist>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.MemoryPlaces, opt => opt.Ignore())

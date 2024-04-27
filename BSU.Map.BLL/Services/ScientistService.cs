@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using BSU.Map.BLL.Dtos;
 using BSU.Map.BLL.Interfaces;
 using BSU.Map.DAL.Interfaces;
 using BSU.Map.DAL.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using BSU.Map.BLL.Dtos.ScientistDtos;
 
 namespace BSU.Map.BLL.Services
 {
@@ -27,6 +27,27 @@ namespace BSU.Map.BLL.Services
                 .ToListAsync();
 
             IEnumerable<ScientistDto> result = Mapper.Map<IEnumerable<ScientistDto>>(scientists);
+
+            return result;
+        }
+
+        public async Task<IEnumerable<ScientistLightDto>> GetScientistsNames()
+        {
+            IEnumerable<Scientist> scientists = await UnitOfWork.Scientists
+                .GetAll()
+                .ToListAsync();
+
+            IEnumerable<ScientistLightDto> result = Mapper.Map<IEnumerable<ScientistLightDto>>(scientists);
+
+            return result;
+        }
+
+        public ScientistDto GetScientistById(int id)
+        {
+            Scientist scientists = UnitOfWork.Scientists
+                .GetById(id);
+
+            ScientistDto result = Mapper.Map<ScientistDto>(scientists);
 
             return result;
         }
