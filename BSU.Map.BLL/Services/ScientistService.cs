@@ -42,12 +42,10 @@ namespace BSU.Map.BLL.Services
             return result;
         }
 
-        public ScientistDto GetScientistById(int id)
+        public ScientistDto GetScientistById(int scientistId)
         {
-            Scientist scientists = UnitOfWork.Scientists
-                .GetById(id);
-
-            ScientistDto result = Mapper.Map<ScientistDto>(scientists);
+            Scientist scientist = UnitOfWork.Scientists.GetById(scientistId);
+            ScientistDto result = Mapper.Map<ScientistDto>(scientist);
 
             return result;
         }

@@ -39,9 +39,9 @@ namespace BSU.Map.WebApi.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public  IActionResult GetScientistById([FromRoute] int scientistId)
+        public  IActionResult GetScientistById([FromRoute] int id)
         {
-            var scientists = _scientistService.GetScientistById(scientistId);
+            var scientists = _scientistService.GetScientistById(id);
             return Ok(scientists);
         }
 
@@ -55,17 +55,17 @@ namespace BSU.Map.WebApi.Controllers
 
         [HttpPut]
         [Route("update/{id}")]
-        public async Task<IActionResult> UpdateScientist([FromRoute] int scientistId, [FromBody] ScientistModelDto scientist)
+        public async Task<IActionResult> UpdateScientist([FromRoute] int id, [FromBody] ScientistModelDto scientist)
         {
-            bool result = await _scientistService.UpdateScientist(scientistId, scientist);
+            bool result = await _scientistService.UpdateScientist(id, scientist);
             return Ok(result);
         }
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public async Task<IActionResult> UpdateScientist([FromRoute] int scientistId)
+        public async Task<IActionResult> UpdateScientist([FromRoute] int id)
         {
-            bool result = await _scientistService.DeleteScientist(scientistId);
+            bool result = await _scientistService.DeleteScientist(id);
             return Ok(result);
         }
     }
