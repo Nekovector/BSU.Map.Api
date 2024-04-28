@@ -30,7 +30,7 @@ namespace BSU.Map.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("names")]
+        [Route("all/names")]
         public async Task<IActionResult> GetScientistsNames()
         {
             var scientists = await _scientistService.GetScientistsNames();
@@ -38,10 +38,10 @@ namespace BSU.Map.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("id")]
-        public  IActionResult GetScientistById(int id)
+        [Route("{id}")]
+        public  IActionResult GetScientistById([FromRoute] int scientistId)
         {
-            var scientists = _scientistService.GetScientistById(id);
+            var scientists = _scientistService.GetScientistById(scientistId);
             return Ok(scientists);
         }
 
