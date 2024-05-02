@@ -63,7 +63,7 @@ namespace BSU.Map.WebApi.Controllers
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public async Task<IActionResult> UpdateScientist([FromRoute] int id)
+        public async Task<IActionResult> DeleteScientist([FromRoute] int id)
         {
             bool result = await _scientistService.DeleteScientist(id);
             return Ok(result);
