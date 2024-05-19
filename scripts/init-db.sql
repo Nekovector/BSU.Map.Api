@@ -1,3 +1,5 @@
+/* create tables */
+
 CREATE TABLE "Coordinates" (
 	id INT PRIMARY KEY,
 	latitude DOUBLE PRECISION NOT NULL,
@@ -165,4 +167,25 @@ ALTER TABLE "MemoryDocs"
 		ON DELETE CASCADE
 		DEFERRABLE INITIALLY DEFERRED;
 
+/* add triggers */
+
+CREATE OR REPLACE FUNCTION delete_coordinates()
+RETURNS TRIGGER
+AS $$
+BEGIN
+    DELETE FROM public."Coordinates"
+    WHERE id = OLD.coordinates_id;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER delete_coordinates_MP
+AFTER DELETE ON public."MemoryPlaces"
+FOR EACH ROW
+EXECUTE FUNCTION delete_coordinates();
+
+CREATE OR REPLACE TRIGGER delete_coordinates_B
+AFTER DELETE ON public."BuildingAddresses"
+FOR EACH ROW
+EXECUTE FUNCTION delete_coordinates();
 
