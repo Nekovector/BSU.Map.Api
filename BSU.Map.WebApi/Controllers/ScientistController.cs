@@ -22,7 +22,6 @@ namespace BSU.Map.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("all")]
         public async Task<IActionResult> GetAllScientists()
         {
             var scientists = await _scientistService.GetAllScientists();
@@ -30,7 +29,7 @@ namespace BSU.Map.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("all/names")]
+        [Route("names")]
         public async Task<IActionResult> GetScientistsNames()
         {
             var scientists = await _scientistService.GetScientistsNames();
@@ -46,7 +45,6 @@ namespace BSU.Map.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("create")]
         public async Task<IActionResult> CreateScientist([FromBody] ScientistModelDto scientist)
         {
             bool result = await _scientistService.CreateScientist(scientist);
@@ -54,7 +52,7 @@ namespace BSU.Map.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("update/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> UpdateScientist([FromRoute] int id, [FromBody] ScientistModelDto scientist)
         {
             bool result = await _scientistService.UpdateScientist(id, scientist);
@@ -62,7 +60,7 @@ namespace BSU.Map.WebApi.Controllers
         }
 
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> DeleteScientist([FromRoute] int id)
         {
             bool result = await _scientistService.DeleteScientist(id);
