@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BSU.Map.BLL.Dtos.ScientistDtos;
+using System.Linq;
 
 namespace BSU.Map.BLL.Services
 {
@@ -42,9 +43,17 @@ namespace BSU.Map.BLL.Services
             return result;
         }
 
-        public ScientistDto GetScientistById(int scientistId)
+        public async Task<ScientistDto> GetScientistById(int scientistId)
         {
-            Scientist scientist = UnitOfWork.Scientists.GetById(scientistId);
+            Scientist scientist = await UnitOfWork.Scientists
+                .GetAll(sc => sc.Id == scientistId)
+                .Include(sc => sc.ScientistPhotos)
+                .Include(sc => sc.ScientistDocs)
+                .Include(sc => sc.MemoryPlaces)
+                .ThenInclude(sc => sc.Coordinates)
+                .AsSplitQuery()
+                .SingleAsync();
+
             ScientistDto result = Mapper.Map<ScientistDto>(scientist);
 
             return result;

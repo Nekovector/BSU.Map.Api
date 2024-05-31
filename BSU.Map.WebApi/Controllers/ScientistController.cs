@@ -38,9 +38,9 @@ namespace BSU.Map.WebApi.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public  IActionResult GetScientistById([FromRoute] int id)
+        public async Task<IActionResult> GetScientistById([FromRoute] int id)
         {
-            var scientists = _scientistService.GetScientistById(id);
+            var scientists = await _scientistService.GetScientistById(id);
             return Ok(scientists);
         }
 
